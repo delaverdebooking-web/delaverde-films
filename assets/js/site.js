@@ -1,10 +1,12 @@
 "use strict";
 
 const phone = "18494976721";
-const baseMessage = "Hola, DELAVERDE FILMS. Soy artista/músico independiente y quiero orientación sobre una estrategia visual y un plan de producción para mi proyecto.";
+const whatsappLinks = document.querySelectorAll("[data-whatsapp-message]");
 
-const whatsappButton = document.getElementById("wa");
-whatsappButton.href = "https://wa.me/" + phone + "?text=" + encodeURIComponent(baseMessage);
+whatsappLinks.forEach((link) => {
+  const message = link.dataset.whatsappMessage;
+  link.href = "https://wa.me/" + phone + "?text=" + encodeURIComponent(message);
+});
 
 document.getElementById("year").textContent = String(new Date().getFullYear());
 
