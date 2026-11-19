@@ -26,3 +26,13 @@
 .trust-grid span{color:#d7e0d8;font-size:12px;font-weight:700}
 @media(max-width:700px){.trust-grid{grid-template-columns:1fr 1fr;gap:16px}.proof-panel{padding:22px}}
 @media(max-width:380px){.trust-grid{grid-template-columns:1fr}}
+
+
+/* Lead magnet banner */
+.leadmagnet-band{padding:clamp(42px,6vw,72px) 0;background:radial-gradient(ellipse at 15% 50%,#315b3b66,transparent 48%),linear-gradient(115deg,#101f15,#07100c);border-block:1px solid #b9e6a633}
+.leadmagnet-inner{display:flex;align-items:center;justify-content:space-between;gap:34px}
+.leadmagnet-copy{max-width:700px}
+.leadmagnet-copy h2{font-size:clamp(28px,4vw,42px);line-height:1.1;letter-spacing:-.04em;margin:12px 0}
+.leadmagnet-copy p{max-width:680px;color:#c3cec5;margin:0;font-size:15px}
+.leadmagnet-cta{flex:0 0 auto;white-space:nowrap}
+@media(max-width:700px){.leadmagnet-inner{display:grid;gap:22px}.leadmagnet-cta{width:100%;white-space:normal}}
