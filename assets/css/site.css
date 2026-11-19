@@ -9,3 +9,19 @@
 .tally-fallback{text-align:center;color:var(--muted);font-size:13px;margin:14px 0 0}
 .tally-fallback a{color:var(--lime);text-decoration:underline;text-underline-offset:3px}
 @media(max-width:700px){.tally-embed{margin-top:22px}.tally-embed iframe{min-height:980px}}
+
+
+/* Portfolio, proof and trust module */
+.proof-panel{margin-top:28px;padding:clamp(24px,4vw,42px);border:1px solid #b9e6a655;background:linear-gradient(145deg,#14251a,#0b1510);max-width:900px}
+.proof-panel-quiet{background:#101b15}
+.proof-kicker{display:inline-block;color:var(--lime);font-size:10px;font-weight:900;letter-spacing:.16em}
+.proof-panel h3{max-width:720px;font-size:clamp(22px,3vw,30px);line-height:1.2;margin:16px 0 10px}
+.proof-panel p{max-width:760px;color:#c3cec5;font-size:14px;margin:0 0 22px}
+.text-link{color:var(--lime);font-size:13px;font-weight:800;text-decoration:underline;text-underline-offset:4px}
+.trust-band{padding:24px 0;border-block:1px solid var(--line);background:#07100c}
+.trust-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.trust-grid div{display:flex;align-items:center;gap:12px;min-width:0}
+.trust-grid strong{color:var(--lime);font-size:11px;letter-spacing:.1em}
+.trust-grid span{color:#d7e0d8;font-size:12px;font-weight:700}
+@media(max-width:700px){.trust-grid{grid-template-columns:1fr 1fr;gap:16px}.proof-panel{padding:22px}}
+@media(max-width:380px){.trust-grid{grid-template-columns:1fr}}
