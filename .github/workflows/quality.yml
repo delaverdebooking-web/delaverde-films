@@ -5,9 +5,11 @@ on:
     branches:
       - main
       - security/hardening-2026-11-15
+      - feature/portfolio-proof-social-2026-11-18
   pull_request:
     branches:
       - main
+      - security/hardening-2026-11-15
 
 permissions:
   contents: read
