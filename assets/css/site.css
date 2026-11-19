@@ -5,10 +5,11 @@
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important}}
 
 .tally-embed{margin:30px auto 0;max-width:820px;overflow:hidden;border:1px solid var(--line);border-radius:4px;background:#fff}
-.tally-embed iframe{display:block;width:100%;min-height:900px;border:0;background:transparent}
+.tally-embed iframe{display:block;width:100%;min-height:1100px;border:0;background:transparent}
 .tally-fallback{text-align:center;color:var(--muted);font-size:13px;margin:14px 0 0}
 .tally-fallback a{color:var(--lime);text-decoration:underline;text-underline-offset:3px}
-@media(max-width:700px){.tally-embed{margin-top:22px}.tally-embed iframe{min-height:980px}}
+@media(max-width:700px){.tally-embed{margin-top:22px}.tally-embed iframe{min-height:1180px}}
+.privacy-note{max-width:820px;margin:14px auto 0;color:var(--muted);font-size:12px;line-height:1.6;text-align:center}
 
 
 /* Portfolio, proof and trust module */
