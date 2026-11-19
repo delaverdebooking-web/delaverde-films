@@ -43,6 +43,8 @@ jobs:
                   self.unsafe_blank = []
                   self.iframe_has_title = False
                   self.external_resources = []
+                  self.inline_script = False
+                  self.inline_style = False
 
               def handle_starttag(self, tag, attrs):
                   a = dict(attrs)
@@ -52,10 +54,14 @@ jobs:
                       self.anchors.append(a["href"][1:])
                   if tag == "a" and a.get("target") == "_blank":
                       rel = set(a.get("rel", "").lower().split())
-                      if not {"noopener", "noreferrer"} & rel:
+                      if not {"noopener", "noreferrer"}.issubset(rel):
                           self.unsafe_blank.append(a.get("href", ""))
                   if tag == "iframe":
                       self.iframe_has_title = bool(a.get("title"))
+                  if tag == "script":
+                      self.inline_script = self.inline_script or "src" not in a
+                  if tag == "style":
+                      self.inline_style = True
                   if tag in {"script", "link"}:
                       resource = a.get("src") or a.get("href", "")
                       if resource.startswith("http://"):
@@ -77,18 +83,18 @@ jobs:
               errors.append("Embedded form iframe must have an accessible title")
           if "https://tally.so/embed/peoBVE" not in html or "https://tally.so/r/peoBVE" not in html:
               errors.append("Tally embed and fallback link must both be present")
-          if re.search(r"<script(?![^>]*\\bsrc=)", html, re.I):
+          if parser.inline_script:
               errors.append("Inline script found; keep JavaScript in the external file")
-          if re.search(r"<style[\\s>]", html, re.I):
+          if parser.inline_style:
               errors.append("Inline style block found; keep CSS in the external file")
-          if re.search(r"\\b(?:innerHTML|outerHTML|insertAdjacentHTML)\\b", js):
+          if any(token in js for token in ("innerHTML", "outerHTML", "insertAdjacentHTML")):
               errors.append("Unsafe dynamic HTML insertion found in JavaScript")
           if css.count("{") != css.count("}"):
               errors.append("Unbalanced CSS braces")
           if "textContent" not in js:
               errors.append("Expected safe textContent DOM update not found")
           if errors:
-              print("\\n".join("FAIL: " + item for item in errors))
+              print("\n".join("FAIL: " + item for item in errors))
               sys.exit(1)
           print("PASS: anchors, IDs, external links, HTTPS resources, Tally embed, DOM safety, CSS braces")
           PY
