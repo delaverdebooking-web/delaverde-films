@@ -1,0 +1,94 @@
+name: Quality checks
+
+on:
+  push:
+    branches:
+      - main
+      - security/hardening-2026-11-15
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  static:
+    name: Static site checks
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+
+      - name: Check JavaScript syntax
+        run: node --check assets/js/site.js
+
+      - name: Validate site structure and security basics
+        run: |
+          python3 - <<'PY'
+          from html.parser import HTMLParser
+          from pathlib import Path
+          import re
+          import sys
+
+          html = Path("index.html").read_text(encoding="utf-8")
+          css = Path("assets/css/site.css").read_text(encoding="utf-8")
+          js = Path("assets/js/site.js").read_text(encoding="utf-8")
+
+          class SiteParser(HTMLParser):
+              def __init__(self):
+                  super().__init__()
+                  self.ids = []
+                  self.anchors = []
+                  self.unsafe_blank = []
+                  self.iframe_has_title = False
+                  self.external_resources = []
+
+              def handle_starttag(self, tag, attrs):
+                  a = dict(attrs)
+                  if "id" in a:
+                      self.ids.append(a["id"])
+                  if tag == "a" and a.get("href", "").startswith("#"):
+                      self.anchors.append(a["href"][1:])
+                  if tag == "a" and a.get("target") == "_blank":
+                      rel = set(a.get("rel", "").lower().split())
+                      if not {"noopener", "noreferrer"} & rel:
+                          self.unsafe_blank.append(a.get("href", ""))
+                  if tag == "iframe":
+                      self.iframe_has_title = bool(a.get("title"))
+                  if tag in {"script", "link"}:
+                      resource = a.get("src") or a.get("href", "")
+                      if resource.startswith("http://"):
+                          self.external_resources.append(resource)
+
+          parser = SiteParser()
+          parser.feed(html)
+          errors = []
+          if len(parser.ids) != len(set(parser.ids)):
+              errors.append("Duplicate HTML id values")
+          missing = sorted(set(parser.anchors) - set(parser.ids))
+          if missing:
+              errors.append("Broken internal anchors: " + ", ".join(missing))
+          if parser.unsafe_blank:
+              errors.append("External target=_blank links missing noopener/noreferrer")
+          if parser.external_resources:
+              errors.append("Insecure HTTP resources: " + ", ".join(parser.external_resources))
+          if not parser.iframe_has_title:
+              errors.append("Embedded form iframe must have an accessible title")
+          if "https://tally.so/embed/peoBVE" not in html or "https://tally.so/r/peoBVE" not in html:
+              errors.append("Tally embed and fallback link must both be present")
+          if re.search(r"<script(?![^>]*\\bsrc=)", html, re.I):
+              errors.append("Inline script found; keep JavaScript in the external file")
+          if re.search(r"<style[\\s>]", html, re.I):
+              errors.append("Inline style block found; keep CSS in the external file")
+          if re.search(r"\\b(?:innerHTML|outerHTML|insertAdjacentHTML)\\b", js):
+              errors.append("Unsafe dynamic HTML insertion found in JavaScript")
+          if css.count("{") != css.count("}"):
+              errors.append("Unbalanced CSS braces")
+          if "textContent" not in js:
+              errors.append("Expected safe textContent DOM update not found")
+          if errors:
+              print("\\n".join("FAIL: " + item for item in errors))
+              sys.exit(1)
+          print("PASS: anchors, IDs, external links, HTTPS resources, Tally embed, DOM safety, CSS braces")
+          PY
