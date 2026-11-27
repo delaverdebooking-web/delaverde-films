@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#07100c">
   <meta name="referrer" content="strict-origin-when-cross-origin">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data: https:; font-src 'self'; connect-src 'self'; frame-src https://tally.so; form-action 'self' https://wa.me; upgrade-insecure-requests">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data: https:; font-src 'self'; connect-src 'self'; frame-src https://tally.so; form-action 'self' https://wa.me https://formspree.io; upgrade-insecure-requests">
   <meta name="description" content="Dirección visual y planes de producción para cantantes y músicos independientes. Convierte tu música en una propuesta visual clara y lista para ejecutar.">
   <title>DELAVERDE FILMS | Dirección visual para artistas independientes</title>
   <link rel="stylesheet" href="assets/css/site.css">
@@ -120,6 +120,27 @@
       </div>
       <p class="privacy-note">Usaremos tus datos únicamente para evaluar tu solicitud y responderte. La recepción de novedades comerciales es opcional y no condiciona la evaluación.</p>
       <p class="tally-fallback">¿No se muestra el formulario? <a href="https://tally.so/r/peoBVE" target="_blank" rel="noopener noreferrer">Ábrelo directamente en Tally ↗</a></p>
+      <div class="quick-contact" aria-labelledby="quick-contact-title">
+        <div class="quick-contact-heading">
+          <span class="eyebrow">¿Solo tienes una consulta?</span>
+          <h3 id="quick-contact-title">Escríbenos directamente.</h3>
+          <p>Si prefieres no completar la evaluación del proyecto, déjanos tu correo y un mensaje breve. Te responderemos para orientarte.</p>
+        </div>
+        <form class="formspree-form" action="https://formspree.io/f/xdegvkdy" method="POST">
+          <input type="hidden" name="_subject" value="Nuevo contacto rápido — DELAVERDE FILMS">
+          <label class="formspree-honeypot" aria-hidden="true">No completar<input type="text" name="_gotcha" tabindex="-1" autocomplete="off"></label>
+          <div class="formspree-fields">
+            <label for="quick-name">Nombre <span>(opcional)</span></label>
+            <input id="quick-name" type="text" name="name" autocomplete="name" placeholder="Tu nombre">
+            <label for="quick-email">Correo electrónico <span>(obligatorio)</span></label>
+            <input id="quick-email" type="email" name="email" autocomplete="email" required placeholder="tunombre@correo.com">
+            <label for="quick-message">Mensaje <span>(opcional)</span></label>
+            <textarea id="quick-message" name="message" rows="4" placeholder="Cuéntanos brevemente qué necesitas..."></textarea>
+          </div>
+          <button class="btn" type="submit">Enviar mensaje <span aria-hidden="true">↗</span></button>
+          <p class="formspree-note">Usaremos tu correo únicamente para responder esta consulta.</p>
+        </form>
+      </div>
     </div>
   </section>
   </section>
