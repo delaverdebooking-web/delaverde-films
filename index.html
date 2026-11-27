@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#07100c">
   <meta name="referrer" content="strict-origin-when-cross-origin">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data: https:; font-src 'self'; connect-src 'self'; frame-src https://tally.so; form-action 'self' https://wa.me; upgrade-insecure-requests">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data: https:; font-src 'self'; connect-src 'self'; frame-src https://tally.so; form-action 'self' https://wa.me https://formspree.io; upgrade-insecure-requests">
   <meta name="description" content="Dirección visual y planes de producción para cantantes y músicos independientes. Convierte tu música en una propuesta visual clara y lista para ejecutar.">
   <title>DELAVERDE FILMS | Dirección visual para artistas independientes</title>
   <link rel="stylesheet" href="assets/css/site.css">
@@ -99,27 +99,6 @@
       </article>
     </div>
     <p class="package-footnote">Los plazos son estimados desde la recepción del material y la información necesaria. El alcance final y la inversión se confirman en una propuesta personalizada. Los paquetes son de estrategia y dirección; no incluyen automáticamente rodaje, fotografía, edición ni pauta publicitaria.</p>
-  </section>
-
-  <section class="trust-band" aria-label="Información de confianza">
-    <div class="wrap trust-grid">
-      <div><strong>01</strong><span>Diagnóstico inicial gratuito</span></div>
-      <div><strong>02</strong><span>Dirección visual y estrategia</span></div>
-      <div><strong>03</strong><span>Planificación por etapas</span></div>
-      <div><strong>04</strong><span>Contacto directo y transparente</span></div>
-    </div>
-  </section>
-
-  <section class="section wrap" id="proceso">
-    <div class="eyebrow">Nuestro método</div>
-    <h2>Un proceso claro, sin pasos innecesarios.</h2>
-    <div class="method">
-      <div><strong>01 / ESCUCHAR</strong><p>Conocemos tu música, visión y metas.</p></div>
-      <div><strong>02 / ANALIZAR</strong><p>Revisamos tu punto de partida y recursos.</p></div>
-      <div><strong>03 / DISEÑAR</strong><p>Definimos concepto, prioridades y alcance.</p></div>
-      <div><strong>04 / PLANIFICAR</strong><p>Te entregamos una ruta para ejecutar.</p></div>
-    </div>
-  </section>
 
   <section class="section alt" id="contacto-form" aria-labelledby="intake-title">
     <div class="wrap">
@@ -141,6 +120,48 @@
       </div>
       <p class="privacy-note">Usaremos tus datos únicamente para evaluar tu solicitud y responderte. La recepción de novedades comerciales es opcional y no condiciona la evaluación.</p>
       <p class="tally-fallback">¿No se muestra el formulario? <a href="https://tally.so/r/peoBVE" target="_blank" rel="noopener noreferrer">Ábrelo directamente en Tally ↗</a></p>
+      <div class="quick-contact" aria-labelledby="quick-contact-title">
+        <div class="quick-contact-heading">
+          <span class="eyebrow">¿Solo tienes una consulta?</span>
+          <h3 id="quick-contact-title">Escríbenos directamente.</h3>
+          <p>Si prefieres no completar la evaluación del proyecto, déjanos tu correo y un mensaje breve. Te responderemos para orientarte.</p>
+        </div>
+        <form class="formspree-form" action="https://formspree.io/f/xdegvkdy" method="POST">
+          <input type="hidden" name="_subject" value="Nuevo contacto rápido — DELAVERDE FILMS">
+          <label class="formspree-honeypot" aria-hidden="true">No completar<input type="text" name="_gotcha" tabindex="-1" autocomplete="off"></label>
+          <div class="formspree-fields">
+            <label for="quick-name">Nombre <span>(opcional)</span></label>
+            <input id="quick-name" type="text" name="name" autocomplete="name" placeholder="Tu nombre">
+            <label for="quick-email">Correo electrónico <span>(obligatorio)</span></label>
+            <input id="quick-email" type="email" name="email" autocomplete="email" required placeholder="tunombre@correo.com">
+            <label for="quick-message">Mensaje <span>(opcional)</span></label>
+            <textarea id="quick-message" name="message" rows="4" placeholder="Cuéntanos brevemente qué necesitas..."></textarea>
+          </div>
+          <button class="btn" type="submit">Enviar mensaje <span aria-hidden="true">↗</span></button>
+          <p class="formspree-note">Usaremos tu correo únicamente para responder esta consulta.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+  </section>
+
+  <section class="trust-band" aria-label="Información de confianza">
+    <div class="wrap trust-grid">
+      <div><strong>01</strong><span>Diagnóstico inicial gratuito</span></div>
+      <div><strong>02</strong><span>Dirección visual y estrategia</span></div>
+      <div><strong>03</strong><span>Planificación por etapas</span></div>
+      <div><strong>04</strong><span>Contacto directo y transparente</span></div>
+    </div>
+  </section>
+
+  <section class="section wrap" id="proceso">
+    <div class="eyebrow">Nuestro método</div>
+    <h2>Un proceso claro, sin pasos innecesarios.</h2>
+    <div class="method">
+      <div><strong>01 / ESCUCHAR</strong><p>Conocemos tu música, visión y metas.</p></div>
+      <div><strong>02 / ANALIZAR</strong><p>Revisamos tu punto de partida y recursos.</p></div>
+      <div><strong>03 / DISEÑAR</strong><p>Definimos concepto, prioridades y alcance.</p></div>
+      <div><strong>04 / PLANIFICAR</strong><p>Te entregamos una ruta para ejecutar.</p></div>
     </div>
   </section>
 
